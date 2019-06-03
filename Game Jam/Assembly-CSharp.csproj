@@ -62,7 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\ProjectileController.cs" />
+    <Compile Include="Assets\Scripts\ProjectileSpawner.cs" />
+    <Compile Include="Assets\Scripts\ProjectileTimer.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/william.rose.dp/source/repos/GameJam/Game Jam/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
