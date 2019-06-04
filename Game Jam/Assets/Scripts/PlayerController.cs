@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     //public float speed;
     private Rigidbody2D rb;
+    public int Health = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,7 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             rb.velocity = moveInput;
 
@@ -25,6 +26,18 @@ public class PlayerCharacter : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(0, 0);
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D obj)
+    {
+        Health -= 1;
+        Destroy(obj.gameObject);
+
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
