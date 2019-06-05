@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemyAIMelee.cs" />
+    <Compile Include="Assets\Scripts\EnemyAIRanged.cs" />
     <Compile Include="Assets\Scripts\GameManagement.cs" />
     <Compile Include="Assets\Scripts\Healer.cs" />
     <Compile Include="Assets\Scripts\Mage.cs" />

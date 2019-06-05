@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     //public float speed;
     private Rigidbody2D rb;
     public int Health = 10;
+    public float Speed = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,17 @@ public class PlayerController : MonoBehaviour
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
-            rb.velocity = moveInput;
+            rb.velocity = moveInput * Speed;
 
         }
         else
         {
             rb.velocity = new Vector2(0, 0);
         }
-
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D obj)
@@ -35,9 +39,6 @@ public class PlayerController : MonoBehaviour
         Health -= 1;
         Destroy(obj.gameObject);
 
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }
