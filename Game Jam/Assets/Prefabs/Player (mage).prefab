@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2781029872390327891}
   - component: {fileID: 2781029872390327888}
   - component: {fileID: 2781029872390327889}
-  - component: {fileID: 2781029872390327894}
   m_Layer: 0
   m_Name: Player (mage)
   m_TagString: Untagged
@@ -143,21 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
---- !u!114 &2781029872390327894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781029872390327895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7151b6cdee9be17439ca02a65bce231b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPrefab: {fileID: 6321546803835950170, guid: 71515252afb0c7b4796e2baa7f40b4b1,
-    type: 3}
-  myPrefab2: {fileID: 4814002362311722863, guid: f8b421bbaf1335d4ab66e289525783ca,
-    type: 3}
-  myPrefab3: {fileID: 4501630595413428576, guid: 2f7b3085a60716343bda7920b90daa78,
-    type: 3}
+  Speed: 1.5
+  SE: {fileID: 0}
+  Enemy: {fileID: 0}
+  AIMelee: {fileID: 0}
+  GM: {fileID: 0}
+  Camera: {fileID: 0}

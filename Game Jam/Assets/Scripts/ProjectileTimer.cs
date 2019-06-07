@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ProjectileTimer : MonoBehaviour
 {
-
+    public GameObject Player;
+    public Statuseffect SE;
     public float Timer = 6.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         Timer = 6.0f;
+        Player = GameObject.Find("Player (mage)");
+        SE = Player.GetComponent<Statuseffect>();
     }
 
     // Update is called once per frame
@@ -24,5 +27,40 @@ public class ProjectileTimer : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D obj)
+    {
+        if (gameObject.name == "Fire Ball(Clone)")
+        {
+            var Rand = Random.Range(0, 3);
+            Debug.Log("Rand: " + Rand);
+            if (Rand == 2)
+            {
+                SE.Burned = true;
+            }
+        }
+
+        else if (gameObject.name == "Ice Ball(Clone)")
+        {
+            var Rand = Random.Range(0, 3);
+            Debug.Log("Rand: " + Rand);
+            if (Rand == 2)
+            {
+                SE.Frozen = true;
+            }
+        }
+
+        else if (gameObject.name == "Lightning Ball(Clone)")
+        {
+            var Rand = Random.Range(0, 3);
+            Debug.Log("Rand: " + Rand);
+            if (Rand == 2)
+            {
+                SE.Stunned = true;
+            }
+        }
+
+        Destroy(gameObject);
     }
 }
