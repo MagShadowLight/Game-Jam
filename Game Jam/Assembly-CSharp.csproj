@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\ProjectileSpawner.cs" />
     <Compile Include="Assets\Scripts\ProjectileTimer.cs" />
+    <Compile Include="Assets\Scripts\Statuseffect.cs" />
     <Compile Include="Assets\Scripts\Thief.cs" />
     <Compile Include="Assets\Scripts\Warrior.cs" />
     <Reference Include="Unity.Timeline.Editor">

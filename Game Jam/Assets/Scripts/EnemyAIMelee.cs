@@ -62,6 +62,5 @@ public class EnemyAIMelee : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D obj)
     {
         health -= 1;
-        Destroy(obj.gameObject);
     }
 }
