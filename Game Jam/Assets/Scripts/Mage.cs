@@ -54,7 +54,7 @@ public class Mage : MonoBehaviour
 
     public void Mages()
     {
-        GM.mage = true;
+        GameManagement.mage = true;
         SceneManager.LoadScene("Forest Maze");
     }
 

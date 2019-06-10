@@ -36,7 +36,7 @@ public class Warrior : MonoBehaviour
 
     public void Warriors()
     {
-        GM.warrior = true;
+        GameManagement.warrior = true;
         SceneManager.LoadScene("Forest Maze");
     }
 }

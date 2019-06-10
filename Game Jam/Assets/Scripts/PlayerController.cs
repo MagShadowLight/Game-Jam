@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public GameObject myPrefab3;
     float Timer = 0.5f;
     public float Timer2 = 0.0f;
+    public EnemyAIRanged AIRanged;
+    float Timer3 = 0.0f;
+    public GameObject Arrow;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,11 @@ public class PlayerController : MonoBehaviour
         Enemy = GameObject.Find("Enemy");
         AIMelee = Enemy.GetComponent<EnemyAIMelee>();
         GM = Camera.GetComponent<GameManagement>();
-
+        AIRanged = Enemy.GetComponent<EnemyAIRanged>();
+        if (GameManagement.warrior == true)
+        {
+            Health = 15;
+        }
     }
 
     // Update is called once per frame
@@ -49,21 +56,46 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (GM.warrior == true)
+        if (Timer3 > 0)
         {
+            Timer3 -= Time.deltaTime;
+        }
+
+        if (GameManagement.warrior == true)
+        {
+            //Debug.Log(GameManagement.warrior);
             if (Input.GetMouseButtonDown(0))
             {
                 float distance = Vector2.Distance(transform.position, Enemy.transform.position);
                 var x = Physics2D.Raycast(transform.position, new Vector3(-10, 0, 0), 6);
 
-                if (distance <= 0.8)
+                if (distance <= 1.5)
                 {
-                    AIMelee.health -= 1;
+                    //AIMelee.health -= 1;
+                    AIRanged.health -= 1;
                 }
+            }
+            if (Input.GetMouseButtonDown(1) && SE.Stunned == false)
+            {
+                if (Timer3 <= 0 && GameObject.Find("Arrow(Clone)") == null)
+                {
+                    Instantiate(Arrow, new Vector2(transform.position.x - 1, transform.position.y), Quaternion.identity);
+                    var arrow = GameObject.Find("Arrow(Clone)");
+                    var arrowRB = arrow.GetComponent<Rigidbody2D>();
+                    arrowRB.velocity = new Vector2(0, 0);
+                    Timer3 = 0.25f;
+                }
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                var arrow = GameObject.Find("Arrow(Clone)");
+                var arrowRB = arrow.GetComponent<Rigidbody2D>();
+                var ArrowPC = arrow.GetComponent<ProjectileController>();
+                arrowRB.velocity = ArrowPC.ShotSpeed;
             }
         }
 
-        if (GM.mage == true)
+        else if (GameManagement.mage == true)
         {
             if (Timer > 0.0)
             {
@@ -92,21 +124,22 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (GM.thief == true)
+        else if (GameManagement.thief == true)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 float distance = Vector2.Distance(transform.position, Enemy.transform.position);
                 var x = Physics2D.Raycast(transform.position, new Vector3(-10, 0, 0), 6);
 
-                if (distance <= 0.8)
+                if (distance <= 1.5)
                 {
-                    AIMelee.health -= 1;
+                    //AIMelee.health -= 1;
+                    AIRanged.health -= 1;
                 }
             }
         }
 
-        if (GM.Healer == true)
+        else if (GameManagement.Healer == true)
         {
             if (Timer2 > 0)
             {
@@ -136,8 +169,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D obj)
     {
-        Health -= 1;
-
-        
+        if (obj.gameObject.name != "Enemy")
+        {
+            Health -= 1;
+        }
     }
 }

@@ -9,13 +9,14 @@ public class ProjectileSpawner : MonoBehaviour
     public GameObject myPrefab2;
     public GameObject myPrefab3;
     public GameObject player;
+    public StatusEffectEnemy SEE;
 
     public float Timer = 2.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SEE = gameObject.GetComponent<StatusEffectEnemy>();   
     }
 
     // Update is called once per frame
@@ -30,11 +31,11 @@ public class ProjectileSpawner : MonoBehaviour
         }
         else
         {
-            if (Timer > 0 && x.distance <= 5)
+            if (Timer > 0 && x.distance <= 5 && SEE.Stunned == false)
             {
                 Timer -= Time.deltaTime;
             }
-            else if (Timer <= 0 && x.distance <= 5)
+            else if (Timer <= 0 && x.distance <= 5 && SEE.Stunned == false)
             {
                 var Rand = Random.Range(0, 3);
                 //Debug.Log("Rand: " + Rand);

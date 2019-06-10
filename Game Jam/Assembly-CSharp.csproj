@@ -66,13 +66,16 @@
     <Compile Include="Assets\Scripts\EnemyAIMelee.cs" />
     <Compile Include="Assets\Scripts\EnemyAIRanged.cs" />
     <Compile Include="Assets\Scripts\GameManagement.cs" />
+    <Compile Include="Assets\Scripts\GoldPickup.cs" />
     <Compile Include="Assets\Scripts\Healer.cs" />
     <Compile Include="Assets\Scripts\Mage.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\ProjectileSpawner.cs" />
     <Compile Include="Assets\Scripts\ProjectileTimer.cs" />
+    <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\Statuseffect.cs" />
+    <Compile Include="Assets\Scripts\StatusEffectEnemy.cs" />
     <Compile Include="Assets\Scripts\Thief.cs" />
     <Compile Include="Assets\Scripts\Warrior.cs" />
     <Reference Include="Unity.Timeline.Editor">
