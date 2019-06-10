@@ -36,7 +36,7 @@ public class Thief : MonoBehaviour
 
     public void Thiefs()
     {
-        GM.thief = true;
+        GameManagement.thief = true;
         SceneManager.LoadScene("Forest Maze");
     }
 

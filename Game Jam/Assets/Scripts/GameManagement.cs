@@ -6,5 +6,7 @@ public class GameManagement : MonoBehaviour
 {
     public int MaxHealth = 10;
 
-    public bool Healer = false, thief = false, mage = false, warrior = false;
+    public static bool Healer = false, thief = false, mage = false, warrior = true;
+
+    public static int Gold = 0;
 }

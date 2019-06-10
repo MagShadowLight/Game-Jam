@@ -50,7 +50,7 @@ public class Healer : MonoBehaviour
 
     public void Healers()
     {
-        GM.Healer = true;
+        GameManagement.Healer = true;
         SceneManager.LoadScene("Forest Maze");
     }
 }

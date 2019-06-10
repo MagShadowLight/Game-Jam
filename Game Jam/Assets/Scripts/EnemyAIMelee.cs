@@ -14,6 +14,7 @@ public class EnemyAIMelee : MonoBehaviour
     public Transform tr;
     public PlayerController pc;
     public int health = 10;
+    public StatusEffectEnemy SEE;
 
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class EnemyAIMelee : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         pc = Player.GetComponent<PlayerController>();
         tr = Player.GetComponent<Transform>();
+        SEE = gameObject.GetComponent<StatusEffectEnemy>();
     }
 
     // Update is called once per frame
@@ -36,12 +38,12 @@ public class EnemyAIMelee : MonoBehaviour
         float Distance = Vector2.Distance(transform.position, Player.transform.position);
         var ray = Physics2D.Raycast(transform.position, new Vector3(10, 0, 0), 6);
 
-        if (Distance > Range && Timer <= 0.0)
+        if (Distance > Range && Timer <= 0.0 && SEE.Frozen == false)
         {
             rb.velocity = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
             Timer = 2.0f;
         }
-        else if (Distance < Range)
+        else if (Distance < Range && SEE.Frozen == false)
         {
             Vector3 desiredPosition = tr.position + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, Speed);
@@ -61,6 +63,9 @@ public class EnemyAIMelee : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D obj)
     {
-        health -= 1;
+        if (obj.gameObject.name != "Player")
+        {
+            health -= 1;
+        }
     }
 }
