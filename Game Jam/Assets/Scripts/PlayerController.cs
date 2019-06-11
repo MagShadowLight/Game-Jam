@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public EnemyAIRanged AIRanged;
     float Timer3 = 0.0f;
     public GameObject Arrow;
+    float Timer4 = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -75,24 +76,55 @@ public class PlayerController : MonoBehaviour
                     AIRanged.health -= 1;
                 }
             }
-            if (Input.GetMouseButtonDown(1) && SE.Stunned == false)
+            if (Input.GetMouseButton(1) && SE.Stunned == false)
             {
                 if (Timer3 <= 0 && GameObject.Find("Arrow(Clone)") == null)
                 {
                     Instantiate(Arrow, new Vector2(transform.position.x - 1, transform.position.y), Quaternion.identity);
-                    var arrow = GameObject.Find("Arrow(Clone)");
-                    var arrowRB = arrow.GetComponent<Rigidbody2D>();
-                    arrowRB.velocity = new Vector2(0, 0);
+                    //var arrow = GameObject.Find("Arrow(Clone)");
+                    //var arrowRB = arrow.GetComponent<Rigidbody2D>();
+                    //arrowRB.velocity = new Vector2(0, 0);
                     Timer3 = 0.25f;
                 }
+                
+                if (Timer4 >= 0)
+                {
+                    Timer4 -= Time.deltaTime;
+                }
             }
+
             else if (Input.GetMouseButtonUp(1))
             {
                 var arrow = GameObject.Find("Arrow(Clone)");
                 var arrowRB = arrow.GetComponent<Rigidbody2D>();
                 var ArrowPC = arrow.GetComponent<ProjectileController>();
                 arrowRB.velocity = ArrowPC.ShotSpeed;
+                //Timer4 = 0.5f;
             }
+            //else if (Input.GetMouseButtonUp(1) && Timer4 <= 0)
+            //{
+            //    var arrow = GameObject.Find("Arrow(Clone)");
+            //    var arrowRB = arrow.GetComponent<Rigidbody2D>();
+            //    var ArrowPC = arrow.GetComponent<ProjectileController>();
+            //    arrowRB.velocity = ArrowPC.ShotSpeed;
+            //    Timer4 = 0.5f;
+            //}
+
+            //else if (Input.GetMouseButtonUp(1) && Timer4 <= 0.1 && Timer4 >= 0.4)
+            //{
+            //    var arrow = GameObject.Find("Arrow(Clone)");
+            //    var arrowRB = arrow.GetComponent<Rigidbody2D>();
+            //    var ArrowPC = arrow.GetComponent<ProjectileController>();
+            //    arrowRB.velocity = new Vector2 (ArrowPC.ShotSpeed.x + 2.5f, ArrowPC.ShotSpeed.y);
+            //    Timer4 = 0.5f;
+            //}
+
+            //else if (Input.GetMouseButtonUp(1) && Timer4 >= 0.5)
+            //{
+            //    var arrow = GameObject.Find("Arrow(Clone)");
+            //    Destroy(arrow.gameObject);
+            //    Timer4 = 0.5f;
+            //}
         }
 
         else if (GameManagement.mage == true)
